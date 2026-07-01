@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Player Log In — KCMSBL Store</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .login-wrap{max-width:440px;margin:60px auto;background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:32px}
+  .login-wrap h1{font-size:26px;color:var(--navy);margin-bottom:6px}
+  .login-wrap p{color:var(--muted);margin-bottom:20px;font-size:15px}
+  .login-wrap label{font-weight:600;font-size:14px;display:block;margin-bottom:6px}
+  .login-wrap input{width:100%;border:1px solid var(--line);border-radius:8px;padding:12px;font-size:15px;margin-bottom:14px}
+  .login-wrap button{width:100%;background:var(--navy);color:#fff;border:0;border-radius:8px;
+    padding:13px;font-weight:700;font-size:16px;cursor:pointer}
+  .login-wrap button:hover{opacity:.92}
+  .err{color:var(--red);font-size:14px;margin-bottom:12px;display:none}
+  .demo-hint{background:#f0f6ff;border:1px solid #cfe0ff;border-radius:10px;padding:12px 14px;
+    font-size:13px;color:#2f5496;margin-top:20px}
+  .demo-hint code{background:#fff;padding:1px 5px;border-radius:4px}
+  .demo-hint b{display:block;margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<div class="login-wrap">
+  <h1>Player Log In</h1>
+  <p>Log in and we'll take you straight to <b>your team's</b> store — so you never
+     accidentally order from a similarly-named team in another division.</p>
+  <div class="err" id="err">We couldn't find that email on a roster. Check with your manager.</div>
+  <label for="email">Email on your team roster</label>
+  <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+  <button onclick="doLogin()">Log In →</button>
+
+  <div class="demo-hint">
+    <b>Demo logins (try one):</b>
+    <code>mrivera@example.com</code> → Federal Blues<br>
+    <code>jsmith@example.com</code> → National Blues<br>
+    <code>dlee@example.com</code> → National Athletics<br>
+    <code>tkim@example.com</code> → Federal Royals
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="store.js"></script>
+<script>
+  function doLogin(){
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const rec = PLAYERS[email];
+    if(!rec){ document.getElementById('err').style.display='block'; return; }
+    setPlayer({ email, name: rec.name, team: rec.team });
+    // Route straight to their team store
+    location.href = 'team.html?t=' + rec.team;
+  }
+  document.getElementById('email').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+</script>
+</body>
+</html>

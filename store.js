@@ -7,6 +7,12 @@ const CART_KEY = 'kcmsbl_cart';
 const getCart = () => JSON.parse(localStorage.getItem(CART_KEY) || '[]');
 const setCart = (c) => { localStorage.setItem(CART_KEY, JSON.stringify(c)); renderCart(); };
 
+/* ---- Player session (login → correct team routing) ---- */
+const PLAYER_KEY = 'kcmsbl_player';
+const getPlayer = () => JSON.parse(localStorage.getItem(PLAYER_KEY) || 'null');
+const setPlayer = (p) => localStorage.setItem(PLAYER_KEY, JSON.stringify(p));
+const logout = () => { localStorage.removeItem(PLAYER_KEY); location.href = 'index.html'; };
+
 function addToCart(item){
   const cart = getCart();
   cart.push(item);
@@ -58,6 +64,11 @@ function checkout(){
 
 // Build the cart drawer + header markup shared by every page
 function mountChrome(activeTeamName){
+  const player = getPlayer();
+  const account = player
+    ? `<a href="team.html?t=${player.team}" title="Go to your team store">👤 ${player.name}</a>
+       <a href="#" onclick="logout();return false;" style="color:#98a2b3">Log out</a>`
+    : `<a href="login.html">Log in</a>`;
   const header = `
     <div class="topbar">🎉 Demo store for <b>store.kcmsbl.com</b> — <a href="index.html">league store</a> · prototype, not live</div>
     <header class="nav"><div class="nav-inner">
@@ -66,6 +77,7 @@ function mountChrome(activeTeamName){
         <a href="index.html">League Gear</a>
         <a href="index.html#teams">Team Stores</a>
         <a href="index.html#champ">Championship</a>
+        ${account}
       </div>
       <div class="nav-spacer"></div>
       <button class="cart-btn" onclick="openCart()">🛒 Cart <span class="count">0</span></button>

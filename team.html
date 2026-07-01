@@ -50,6 +50,18 @@
     document.getElementById('teamLeague').textContent = team.league;
     document.getElementById('teamLogo').textContent = team.logo;
 
+    // Guardrail: if a logged-in player is viewing a team that isn't theirs, warn them.
+    const player = getPlayer();
+    if(player && player.team !== slug){
+      const mine = TEAMS[player.team];
+      const warn = document.createElement('div');
+      warn.className = 'wrongteam';
+      warn.innerHTML = `⚠️ Heads up, ${player.name} — this is <b>${team.name}</b> (${team.league}),
+        but your roster team is <b>${mine.name}</b> (${mine.league}).
+        <a href="team.html?t=${player.team}">Go to my team's store →</a>`;
+      document.querySelector('.wrap').prepend(warn);
+    }
+
     // Team pays no markup in demo; managers could add one for fundraising
     const ctx = { prefix:'tm', markup:0, teamName: team.name };
     const products = team.offers.map(id => CATALOG.find(p=>p.id===id)).filter(Boolean);

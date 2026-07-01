@@ -66,16 +66,43 @@ inventory or shipping.
 
 ## 4. Recommendation
 
-**Start with SquadLocker**, linked from kcmsbl.com.
+**Partner with a team dealer/decorator who runs the store — we host the front door.**
 
-- It already solved the hard part (self-serve stores + direct-to-player fulfillment).
-- Zero inventory/shipping burden on us.
-- We can turn on a fundraising markup later if we decide to profit.
-- We keep this prototype as the **spec** if we ever decide to go custom for full
-  brand ownership at store.kcmsbl.com.
+The league has real leverage: 40+ teams and hundreds of players buying gear every
+year is recurring revenue a dealer wants. So instead of *us* paying for a platform,
+the smarter model is:
 
-**Trophies:** handle separately via an awards/trophy supplier — offer them as a
-seasonal add-on, not core to the apparel store.
+- **A dealer runs products, printing, and fulfillment** (at no cost to us), and we
+  negotiate a **rebate/commission to the league** on every sale — or free league
+  championship gear, or a fundraising markup we control.
+- **We own the "front door" on kcmsbl.com** — the store link, and importantly a
+  **player login that routes each player to their correct team store.**
+
+**Why the login matters:** we have similarly-named teams across divisions (e.g.
+"Federal Blues" vs "National Blues"). Without a guardrail, players will order from
+the wrong team. Because we already have roster data, a player can log in and be
+sent straight to *their* team's store — and warned if they land on the wrong one.
+The prototype now demonstrates this (see `login.html`).
+
+**Split of responsibilities:**
+
+| Layer | Who owns it |
+|-------|-------------|
+| Front door on kcmsbl.com (link, login, team routing) | **Us** — the part players see |
+| Products, printing, shipping, customer service | **Partner dealer** |
+| Rebate / fundraising markup | Negotiated in our favor |
+
+**Trophies:** handle separately via an awards/trophy supplier — offer as a seasonal
+add-on, not core to the apparel store.
+
+### Questions to ask a potential dealer partner
+1. What **rebate/commission** does the league get per sale?
+2. Can players be **routed to their specific team** (does it support our team split)?
+3. Can it **embed or link cleanly** from kcmsbl.com / store.kcmsbl.com?
+4. Do we get **free championship/All-Star gear** as part of the deal?
+5. Who owns the **customer/player data**?
+6. What's the **turnaround time** and **return policy** (esp. on custom jerseys)?
+7. Can we control a **fundraising markup**?
 
 ---
 

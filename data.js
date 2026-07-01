@@ -53,4 +53,24 @@ const TEAMS = {
     logo: '🟢',
     offers: ['tee','hoodie','cap','jersey','bag'],
   },
+  'national-blues': {
+    name: 'National Blues',
+    league: '18+ National League',
+    primary: '#0a3161',
+    accent: '#ffffff',
+    logo: '🔷',
+    offers: ['tee','hoodie','cap','jersey'],
+  },
 };
+
+// Player roster — in the real build this comes from the league's existing
+// roster data. Login maps a player to their EXACT team so they can't
+// accidentally buy from a similarly-named team in another division
+// (e.g. "Federal Blues" vs "National Blues").
+const PLAYERS = {
+  'mrivera@example.com':  { name: 'M. Rivera',  team: 'federal-blues' },
+  'jsmith@example.com':   { name: 'J. Smith',   team: 'national-blues' },
+  'dlee@example.com':     { name: 'D. Lee',     team: 'national-athletics' },
+  'tkim@example.com':     { name: 'T. Kim',     team: 'federal-royals' },
+};
+
