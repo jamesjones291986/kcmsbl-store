@@ -64,13 +64,14 @@ const TEAMS = {
 };
 
 // Player roster — in the real build this comes from the league's existing
-// roster data. Login maps a player to their EXACT team so they can't
-// accidentally buy from a similarly-named team in another division
+// roster data. Login maps a player to their team(s). Players on MULTIPLE teams
+// get a chooser; the wrong-team warning only fires for teams they're NOT on.
+// This also prevents ordering from a similarly-named team in another division
 // (e.g. "Federal Blues" vs "National Blues").
 const PLAYERS = {
-  'mrivera@example.com':  { name: 'M. Rivera',  team: 'federal-blues' },
-  'jsmith@example.com':   { name: 'J. Smith',   team: 'national-blues' },
-  'dlee@example.com':     { name: 'D. Lee',     team: 'national-athletics' },
-  'tkim@example.com':     { name: 'T. Kim',     team: 'federal-royals' },
+  'mrivera@example.com':  { name: 'M. Rivera',  teams: ['federal-blues'] },
+  'jsmith@example.com':   { name: 'J. Smith',   teams: ['national-blues'] },
+  'dlee@example.com':     { name: 'D. Lee',     teams: ['national-athletics','federal-royals'] }, // plays on two
+  'tkim@example.com':     { name: 'T. Kim',     teams: ['federal-royals'] },
 };
 

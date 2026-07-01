@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Teams — KCMSBL Store</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wrap">
+  <div class="section-head">
+    <h2 id="hi">Your Teams</h2>
+    <span class="sub">You're on more than one roster — pick a store</span>
+  </div>
+  <div class="teams" id="myTeams"></div>
+  <div class="note">Playing on multiple teams? Order gear for each from its own store. Your cart can hold items from more than one team.</div>
+</div>
+
+<footer>KCMSBL Store — prototype demo · <a href="index.html">store.kcmsbl.com</a></footer>
+
+<script src="data.js"></script>
+<script src="store.js"></script>
+<script>
+  const player = getPlayer();
+  if(!player){ location.href = 'login.html'; }
+  else {
+    mountChrome();
+    document.getElementById('hi').textContent = `${player.name} — Your Teams`;
+    document.getElementById('myTeams').innerHTML = player.teams.map(slug=>{
+      const t = TEAMS[slug];
+      return `<a class="team-card" href="team.html?t=${slug}">
+        <div class="tl" style="background:${t.primary}">${t.logo}</div>
+        <div class="meta"><b>${t.name}</b><small>${t.league}</small></div>
+      </a>`;
+    }).join('');
+  }
+</script>
+</body>
+</html>

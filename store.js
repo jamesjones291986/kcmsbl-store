@@ -65,8 +65,11 @@ function checkout(){
 // Build the cart drawer + header markup shared by every page
 function mountChrome(activeTeamName){
   const player = getPlayer();
+  const myLink = player
+    ? (player.teams.length === 1 ? `team.html?t=${player.teams[0]}` : 'my-teams.html')
+    : '#';
   const account = player
-    ? `<a href="team.html?t=${player.team}" title="Go to your team store">👤 ${player.name}</a>
+    ? `<a href="${myLink}" title="Go to your team store${player.teams.length>1?'s':''}">👤 ${player.name}</a>
        <a href="#" onclick="logout();return false;" style="color:#98a2b3">Log out</a>`
     : `<a href="login.html">Log in</a>`;
   const header = `

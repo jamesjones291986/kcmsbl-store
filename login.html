@@ -37,7 +37,7 @@
     <b>Demo logins (try one):</b>
     <code>mrivera@example.com</code> → Federal Blues<br>
     <code>jsmith@example.com</code> → National Blues<br>
-    <code>dlee@example.com</code> → National Athletics<br>
+    <code>dlee@example.com</code> → plays on TWO teams (chooser)<br>
     <code>tkim@example.com</code> → Federal Royals
   </div>
 </div>
@@ -49,9 +49,13 @@
     const email = document.getElementById('email').value.trim().toLowerCase();
     const rec = PLAYERS[email];
     if(!rec){ document.getElementById('err').style.display='block'; return; }
-    setPlayer({ email, name: rec.name, team: rec.team });
-    // Route straight to their team store
-    location.href = 'team.html?t=' + rec.team;
+    setPlayer({ email, name: rec.name, teams: rec.teams });
+    // One team → straight to their store. Multiple → let them choose.
+    if(rec.teams.length === 1){
+      location.href = 'team.html?t=' + rec.teams[0];
+    } else {
+      location.href = 'my-teams.html';
+    }
   }
   document.getElementById('email').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
 </script>
