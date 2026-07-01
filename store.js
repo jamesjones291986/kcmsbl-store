@@ -9,7 +9,16 @@ const setCart = (c) => { localStorage.setItem(CART_KEY, JSON.stringify(c)); rend
 
 /* ---- Player session (login → correct team routing) ---- */
 const PLAYER_KEY = 'kcmsbl_player';
-const getPlayer = () => JSON.parse(localStorage.getItem(PLAYER_KEY) || 'null');
+function getPlayer(){
+  const p = JSON.parse(localStorage.getItem(PLAYER_KEY) || 'null');
+  if(!p) return null;
+  // Backward-compat: normalize old {team:'x'} sessions to {teams:['x']}
+  if(!Array.isArray(p.teams)){
+    p.teams = p.team ? [p.team] : [];
+    delete p.team;
+  }
+  return p;
+}
 const setPlayer = (p) => localStorage.setItem(PLAYER_KEY, JSON.stringify(p));
 const logout = () => { localStorage.removeItem(PLAYER_KEY); location.href = 'index.html'; };
 
