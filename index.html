@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KCMSBL Store — League & Team Gear</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Official KCMSBL Gear<br>& Team Stores</h1>
+    <p>League apparel, championship shirts, and always-open team stores. Order your own gear anytime — no group order required. Ships straight to your door.</p>
+    <a class="cta" href="#teams">Find Your Team Store →</a>
+  </div>
+</section>
+
+<!-- LEAGUE GEAR -->
+<div class="wrap">
+  <div class="section-head">
+    <h2>League Gear</h2>
+    <span class="sub">Official KCMSBL branded apparel — anyone can buy</span>
+  </div>
+  <div class="grid" id="leagueGrid"></div>
+</div>
+
+<!-- CHAMPIONSHIP / ALL-STAR -->
+<div class="band">
+  <div class="wrap" id="champ">
+    <div class="section-head">
+      <h2>🏆 Championship & All-Star</h2>
+      <span class="sub">Seasonal — opens after playoffs & the All-Star Game</span>
+    </div>
+    <div class="grid" id="champGrid"></div>
+    <div class="note">Managers receive one free championship trophy. Players & families can buy replica trophies here — these are hard goods and ship separately from apparel.</div>
+  </div>
+</div>
+
+<!-- TEAM DIRECTORY -->
+<div class="wrap" id="teams">
+  <div class="section-head">
+    <h2>Team Stores</h2>
+    <span class="sub">Pick your team → order your gear</span>
+  </div>
+  <div class="teams" id="teamGrid"></div>
+</div>
+
+<!-- SELF-SERVE EXPLAINER -->
+<div class="band">
+  <div class="wrap">
+    <div class="section-head"><h2>For Team Managers</h2>
+      <span class="sub">Set up your team store in minutes</span></div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Upload your logo</h3>
+        <p>Add your team name, colors, and logo. We approve it once.</p></div>
+      <div class="step"><div class="n">2</div><h3>Pick your products</h3>
+        <p>Choose from the catalog — jerseys, hoodies, caps, pants, bags.</p></div>
+      <div class="step"><div class="n">3</div><h3>Share the link</h3>
+        <p>Send players your store link. It stays open all season.</p></div>
+      <div class="step"><div class="n">4</div><h3>Players order</h3>
+        <p>Each player orders their own size. Ships to their door. You do nothing.</p></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  KCMSBL Store — prototype demo · <a href="index.html">store.kcmsbl.com</a><br>
+  Linked from the main league site at kcmsbl.com
+</footer>
+
+<script src="data.js"></script>
+<script src="store.js"></script>
+<script>
+  mountChrome();
+  const ctx = { prefix:'lg', markup:0 };
+  // League products (non-seasonal / non-champ)
+  document.getElementById('leagueGrid').innerHTML =
+    LEAGUE_PRODUCTS.filter(p=>!p.seasonal && !p.hardgood).map(p=>productCard(p,ctx)).join('');
+  // Championship + all-star + trophy
+  document.getElementById('champGrid').innerHTML =
+    LEAGUE_PRODUCTS.filter(p=>p.seasonal || p.hardgood).map(p=>productCard(p,ctx)).join('');
+  // Team directory
+  document.getElementById('teamGrid').innerHTML = Object.entries(TEAMS).map(([slug,t])=>`
+    <a class="team-card" href="team.html?t=${slug}">
+      <div class="tl" style="background:${t.primary}">${t.logo}</div>
+      <div class="meta"><b>${t.name}</b><small>${t.league}</small></div>
+    </a>`).join('');
+</script>
+</body>
+</html>

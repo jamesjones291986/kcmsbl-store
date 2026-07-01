@@ -1,0 +1,108 @@
+:root{
+  --navy:#0e2a47; --navy2:#14395f; --red:#c8102e; --ink:#1a1a1a;
+  --muted:#667085; --line:#e4e7ec; --bg:#f7f8fa; --white:#fff;
+  --team-primary:#0e2a47; --team-accent:#c8102e;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.5}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+
+/* Header */
+.topbar{background:var(--navy);color:#fff;font-size:13px;text-align:center;padding:6px}
+.topbar a{text-decoration:underline;opacity:.9}
+header.nav{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--navy)}
+.brand .logo{width:34px;height:34px;background:var(--navy);color:#fff;border-radius:8px;
+  display:grid;place-items:center;font-size:18px}
+.nav-links{display:flex;gap:22px;margin-left:8px;font-weight:600;font-size:15px;color:#344054}
+.nav-links a:hover{color:var(--red)}
+.nav-spacer{flex:1}
+.cart-btn{position:relative;background:var(--navy);color:#fff;border:0;border-radius:8px;
+  padding:10px 16px;font-weight:700;cursor:pointer;font-size:14px}
+.cart-btn .count{position:absolute;top:-8px;right:-8px;background:var(--red);color:#fff;
+  border-radius:999px;min-width:20px;height:20px;font-size:12px;display:grid;place-items:center;padding:0 5px}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:56px 20px}
+.hero-inner{max-width:1120px;margin:0 auto}
+.hero h1{font-size:40px;line-height:1.1;margin-bottom:12px}
+.hero p{font-size:18px;opacity:.9;max-width:620px}
+.hero .cta{margin-top:22px;display:inline-block;background:var(--red);color:#fff;
+  padding:13px 26px;border-radius:8px;font-weight:700}
+
+/* Team hero (color-driven) */
+.team-hero{background:linear-gradient(135deg,var(--team-primary),#000);color:#fff;padding:48px 20px}
+.team-hero .badge{display:inline-block;background:var(--team-accent);padding:4px 12px;border-radius:999px;
+  font-size:13px;font-weight:700;margin-bottom:12px}
+.team-hero h1{font-size:38px;display:flex;align-items:center;gap:14px}
+.team-hero .team-logo{font-size:46px}
+
+/* Sections */
+.wrap{max-width:1120px;margin:0 auto;padding:40px 20px}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:8px}
+.section-head h2{font-size:26px;color:var(--navy)}
+.section-head .sub{color:var(--muted);font-size:15px}
+
+/* Product grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  display:flex;flex-direction:column;transition:.15s}
+.card:hover{box-shadow:0 8px 24px rgba(16,24,40,.1);transform:translateY(-2px)}
+.card .thumb{height:150px;background:var(--bg);display:grid;place-items:center;font-size:64px;
+  border-bottom:1px solid var(--line)}
+.card .body{padding:16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card .name{font-weight:700;font-size:16px}
+.card .desc{color:var(--muted);font-size:13px;flex:1}
+.card .price{font-weight:800;color:var(--navy);font-size:18px}
+.tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;
+  background:#fff4e5;color:#b54708;width:fit-content}
+.tag.hard{background:#eef4ff;color:#2f5496}
+.card select,.card input{border:1px solid var(--line);border-radius:8px;padding:8px;font-size:14px;width:100%}
+.card .add{background:var(--team-primary,var(--navy));color:#fff;border:0;border-radius:8px;
+  padding:10px;font-weight:700;cursor:pointer;margin-top:4px}
+.card .add:hover{opacity:.9}
+
+/* Team directory */
+.teams{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.team-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;display:flex;
+  align-items:center;gap:14px;transition:.15s}
+.team-card:hover{box-shadow:0 8px 24px rgba(16,24,40,.1);transform:translateY(-2px)}
+.team-card .tl{width:52px;height:52px;border-radius:10px;display:grid;place-items:center;font-size:28px;color:#fff}
+.team-card .meta small{color:var(--muted)}
+.team-card .meta b{display:block;font-size:17px}
+
+/* Info / self-serve band */
+.band{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px}
+.step{text-align:center;padding:10px}
+.step .n{width:44px;height:44px;border-radius:999px;background:var(--navy);color:#fff;
+  display:grid;place-items:center;font-weight:800;margin:0 auto 12px;font-size:18px}
+.step h3{font-size:17px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:14px}
+
+/* Cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:.2s;z-index:90}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:-420px;width:400px;max-width:90vw;height:100%;background:#fff;
+  z-index:100;transition:.25s;display:flex;flex-direction:column;box-shadow:-4px 0 24px rgba(0,0,0,.15)}
+.drawer.open{right:0}
+.drawer h3{padding:20px;border-bottom:1px solid var(--line);font-size:20px}
+.drawer .items{flex:1;overflow:auto;padding:12px 20px}
+.line{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.line .ic{font-size:32px}
+.line .info{flex:1}
+.line .info b{font-size:15px}
+.line .info small{color:var(--muted);display:block}
+.line .rm{color:var(--red);background:none;border:0;cursor:pointer;font-size:13px}
+.drawer .foot{padding:20px;border-top:1px solid var(--line)}
+.drawer .total{display:flex;justify-content:space-between;font-size:18px;font-weight:800;margin-bottom:14px}
+.checkout{width:100%;background:var(--red);color:#fff;border:0;border-radius:8px;padding:14px;
+  font-weight:800;cursor:pointer;font-size:16px}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+
+footer{background:var(--navy);color:#cbd5e1;padding:30px 20px;text-align:center;font-size:14px;margin-top:20px}
+footer a{text-decoration:underline}
+.note{background:#fffbe6;border:1px solid #ffe58f;border-radius:10px;padding:12px 16px;font-size:13px;color:#874d00;margin-top:16px}

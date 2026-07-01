@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Store — KCMSBL</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<section class="team-hero" id="teamHero">
+  <div class="hero-inner">
+    <span class="badge" id="teamLeague">League</span>
+    <h1><span class="team-logo" id="teamLogo">⚾</span> <span id="teamName">Team</span> Store</h1>
+    <p style="opacity:.9;margin-top:8px">Order your own gear anytime — ships directly to you.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="section-head">
+    <h2>Team Gear</h2>
+    <span class="sub"><a href="index.html" style="color:var(--red);font-weight:600">← All team stores</a></span>
+  </div>
+  <div class="grid" id="teamGrid"></div>
+  <div class="note">Missed the team's bulk order, or joined mid-season? No problem — this store never closes. Order exactly what you need in your size.</div>
+</div>
+
+<footer>
+  KCMSBL Store — prototype demo · <a href="index.html">store.kcmsbl.com</a>
+</footer>
+
+<script src="data.js"></script>
+<script src="store.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('t') || 'federal-blues';
+  const team = TEAMS[slug];
+
+  if(!team){
+    document.body.innerHTML = '<div class="wrap"><h2>Team not found</h2><p><a href="index.html">← Back to store</a></p></div>';
+  } else {
+    // Apply team colors to CSS variables
+    document.documentElement.style.setProperty('--team-primary', team.primary);
+    document.documentElement.style.setProperty('--team-accent', team.accent);
+    document.title = team.name + ' Store — KCMSBL';
+
+    mountChrome(team.name);
+
+    document.getElementById('teamName').textContent = team.name;
+    document.getElementById('teamLeague').textContent = team.league;
+    document.getElementById('teamLogo').textContent = team.logo;
+
+    // Team pays no markup in demo; managers could add one for fundraising
+    const ctx = { prefix:'tm', markup:0, teamName: team.name };
+    const products = team.offers.map(id => CATALOG.find(p=>p.id===id)).filter(Boolean);
+    document.getElementById('teamGrid').innerHTML = products.map(p=>productCard(p,ctx)).join('');
+  }
+</script>
+</body>
+</html>
